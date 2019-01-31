@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="GarageSaleApp.UwpApp.Views.GarageSaleEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GarageSaleApp.UwpApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock>Garage Sale Event</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding SaveAsyncCommand}"  IsEnabled="{Binding IsModified}">Save</Button>
+        </StackPanel>
+        <TextBox Header="Name" Width="300" Text="{Binding Name, Mode=TwoWay}" />
+        <CalendarDatePicker Date="{Binding FirstDay, Mode=TwoWay}" Header="First day"></CalendarDatePicker>
+        <CalendarDatePicker Date="{Binding LastDay, Mode=TwoWay}" Header="Last day"></CalendarDatePicker>
+        <TextBox Text="{Binding Notes, Mode=TwoWay}" TextWrapping="Wrap" Header="Notes"></TextBox>
+    </StackPanel>
+</Page>
