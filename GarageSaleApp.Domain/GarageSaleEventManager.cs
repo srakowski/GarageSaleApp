@@ -12,7 +12,11 @@ namespace GarageSaleApp.Domain
             _eventRepository = eventRepository;
         }
 
-        public GarageSaleEvent CreateEvent(string name)
+        public GarageSaleEvent CreateEvent(
+            string name,
+            DateTime startDate,
+            DateTime endDate,
+            string notes)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -21,7 +25,10 @@ namespace GarageSaleApp.Domain
 
             var @event = new GarageSaleEvent
             {
-                Name = name
+                Name = name,
+                StartDate = startDate,
+                EndDate = endDate,
+                Notes = notes
             };
 
             _eventRepository.Add(@event);

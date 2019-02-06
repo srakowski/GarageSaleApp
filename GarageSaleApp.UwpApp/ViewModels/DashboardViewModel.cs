@@ -20,8 +20,7 @@ namespace GarageSaleApp.UwpApp.ViewModels
 
         private void NewGarageSaleEvent()
         {
-            _navigationService.NavigateTo(nameof(Views.GarageSaleEditorView),
-                new GarageSaleEventViewModel(_navigationService));
+            _navigationService.NavigateTo(nameof(Views.GarageSaleEditorView));
         }
     }
 }

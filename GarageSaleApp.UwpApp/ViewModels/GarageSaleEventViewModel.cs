@@ -10,14 +10,19 @@ namespace GarageSaleApp.UwpApp.ViewModels
 {
     public class GarageSaleEventViewModel : ViewModelBase
     {
+        private GarageSaleEventManager _garageSaleEventManager;
         private readonly INavigationService _navigationService;
         private bool _isModified;
         private GarageSaleEvent _model;
 
-        public GarageSaleEventViewModel(INavigationService navigationService)
+        public GarageSaleEventViewModel(
+            GarageSaleEventManager garageSaleEventManager,
+            INavigationService navigationService,
+            GarageSaleEvent garageSaleEvent)
         {
+            _garageSaleEventManager = garageSaleEventManager;
             _navigationService = navigationService;
-            Model = new GarageSaleEvent();
+            Model = garageSaleEvent ?? new GarageSaleEvent();
             Model.StartDate = DateTime.UtcNow;
             Model.EndDate = DateTime.UtcNow;
             SaveAsyncCommand = new RelayCommand(SaveAsync);
@@ -87,11 +92,17 @@ namespace GarageSaleApp.UwpApp.ViewModels
 
         public ICommand SaveAsyncCommand { get; }
 
-        public async void SaveAsync()
+        public void SaveAsync()
         {
             IsModified = false;
-            await Task.CompletedTask;
-            // TODO: actually save this to the repository.
+            _garageSaleEventManager.CreateEvent(
+                Name,
+                FirstDay.Value.DateTime,
+                LastDay.Value.DateTime,
+                Notes);
+
+            var result = _garageSaleEventManager.GetEvents();
+
             _navigationService.NavigateTo(nameof(Views.DashboardView));
         }
     }

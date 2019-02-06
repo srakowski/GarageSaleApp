@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GarageSaleApp.Domain;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,8 +30,11 @@ namespace GarageSaleApp.UwpApp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.DataContext = e.Parameter as ViewModels.GarageSaleEventViewModel ?? 
-                new ViewModels.GarageSaleEventViewModel(new Services.NavigationService(this.Frame));
+            this.DataContext = new ViewModels.GarageSaleEventViewModel(
+                new GarageSaleEventManager(new DataAccess.SqliteGarageSaleEventRepository(
+                    Windows.Storage.ApplicationData.Current.LocalFolder.Path)),
+                new Services.NavigationService(this.Frame),
+                e.Parameter as GarageSaleEvent);
         }
     }
 }

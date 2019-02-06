@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageSaleApp.Domain", "GarageSaleApp.Domain\GarageSaleApp.Domain.csproj", "{9863432C-063F-496E-AE1C-8BD5ECFF836B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageSaleApp.Domain", "GarageSaleApp.Domain\GarageSaleApp.Domain.csproj", "{9863432C-063F-496E-AE1C-8BD5ECFF836B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageSaleApp.UwpApp", "GarageSaleApp.UwpApp\GarageSaleApp.UwpApp.csproj", "{DE37536F-47ED-4569-A8D1-BA63356BECC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarageSaleApp.DataAccess", "GarageSaleApp.DataAccess\GarageSaleApp.DataAccess.csproj", "{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,22 @@ Global
 		{DE37536F-47ED-4569-A8D1-BA63356BECC8}.Release|x86.ActiveCfg = Release|x86
 		{DE37536F-47ED-4569-A8D1-BA63356BECC8}.Release|x86.Build.0 = Release|x86
 		{DE37536F-47ED-4569-A8D1-BA63356BECC8}.Release|x86.Deploy.0 = Release|x86
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|ARM.Build.0 = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|x64.Build.0 = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Debug|x86.Build.0 = Debug|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|ARM.Build.0 = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|x64.ActiveCfg = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|x64.Build.0 = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|x86.ActiveCfg = Release|Any CPU
+		{2F2A575C-9EED-4FBE-A897-D0B49F6CB315}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

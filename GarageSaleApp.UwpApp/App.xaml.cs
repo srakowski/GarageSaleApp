@@ -20,6 +20,7 @@ namespace GarageSaleApp.UwpApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            GarageSaleApp.DataAccess.SqliteDatabase.Initialize(Windows.Storage.ApplicationData.Current.LocalFolder.Path);
         }
 
         /// <summary>
