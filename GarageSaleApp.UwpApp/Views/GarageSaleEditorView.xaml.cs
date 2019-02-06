@@ -29,7 +29,8 @@ namespace GarageSaleApp.UwpApp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.DataContext = new ViewModels.GarageSaleEventViewModel();
+            this.DataContext = e.Parameter as ViewModels.GarageSaleEventViewModel ?? 
+                new ViewModels.GarageSaleEventViewModel(new Services.NavigationService(this.Frame));
         }
     }
 }

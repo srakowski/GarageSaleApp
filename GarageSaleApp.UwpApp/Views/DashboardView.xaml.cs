@@ -13,18 +13,24 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace GarageSaleApp.UwpApp
+namespace GarageSaleApp.UwpApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class DashboardView : Page
     {
-        public MainPage()
+        public DashboardView()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.DataContext = new ViewModels.DashboardViewModel(
+                new Services.NavigationService(this.Frame));
         }
     }
 }
