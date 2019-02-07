@@ -1,5 +1,4 @@
-﻿using GarageSaleApp.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,21 +20,20 @@ namespace GarageSaleApp.UwpApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GarageSaleEditorView : Page
+    public sealed partial class DashboardView : Page
     {
-        public GarageSaleEditorView()
+        public DashboardView()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var gse = e.Parameter as GarageSaleEvent;
+            this.DataContext = new ViewModels.DashboardViewModel(
+                new Services.FrameNavigationService(this.Frame)
+            );
 
-            gse = gse ?? new GarageSaleEvent();
-
-            this.DataContext = new ViewModels.GarageSaleEventViewModel(gse,
-                new Services.FrameNavigationService(this.Frame));
+            base.OnNavigatedTo(e);
         }
     }
 }
