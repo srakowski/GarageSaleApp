@@ -3,8 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GarageSaleApp.Domain;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GarageSaleApp.UwpApp.ViewModels
@@ -14,14 +12,13 @@ namespace GarageSaleApp.UwpApp.ViewModels
         private bool _isModified;
         private GarageSaleEvent _model;
         private readonly INavigationService _navigationService;
+        private readonly GarageSaleEventManager _garageSaleEventManager;
 
-        public GarageSaleEventViewModel(GarageSaleEvent @event,
-            INavigationService navigationService)
+        public GarageSaleEventViewModel(INavigationService navigationService,
+            GarageSaleEventManager garageSaleEventManager)
         {
             _navigationService = navigationService;
-            Model = @event;
-            Model.StartDate = Model.StartDate ?? DateTime.UtcNow;
-            Model.EndDate = Model.EndDate ?? DateTime.UtcNow;
+            _garageSaleEventManager = garageSaleEventManager;
             SaveAsyncCommand = new RelayCommand(SaveAsync);
         }
 
@@ -87,6 +84,13 @@ namespace GarageSaleApp.UwpApp.ViewModels
             }
         }
 
+        public void Load(object model)
+        {
+            Model = model as GarageSaleEvent ?? new GarageSaleEvent();
+            Model.StartDate = Model.StartDate ?? DateTime.UtcNow;
+            Model.EndDate = Model.EndDate ?? DateTime.UtcNow;
+        }
+
         public ICommand SaveAsyncCommand { get; }
 
         public void SaveAsync()
@@ -95,7 +99,7 @@ namespace GarageSaleApp.UwpApp.ViewModels
 
             IsModified = false;
 
-            // TODO: actually save this to the repository.
+            _garageSaleEventManager.CreateEvent(Model);
 
             _navigationService.NavigateTo(nameof(Views.DashboardView));
         }

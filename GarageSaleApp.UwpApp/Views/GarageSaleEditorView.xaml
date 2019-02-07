@@ -5,6 +5,7 @@
     xmlns:local="using:GarageSaleApp.UwpApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding GarageSaleEvent, Source={StaticResource ViewModelLocator}}"
     mc:Ignorable="d">
 
     <StackPanel HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

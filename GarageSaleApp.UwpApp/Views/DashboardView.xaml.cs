@@ -26,14 +26,5 @@ namespace GarageSaleApp.UwpApp.Views
         {
             this.InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            this.DataContext = new ViewModels.DashboardViewModel(
-                new Services.FrameNavigationService(this.Frame)
-            );
-
-            base.OnNavigatedTo(e);
-        }
     }
 }
