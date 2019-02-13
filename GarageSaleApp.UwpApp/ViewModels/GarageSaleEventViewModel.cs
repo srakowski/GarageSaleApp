@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GarageSaleApp.Domain;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace GarageSaleApp.UwpApp.ViewModels
@@ -10,6 +11,7 @@ namespace GarageSaleApp.UwpApp.ViewModels
     public class GarageSaleEventViewModel : ViewModelBase
     {
         private bool _isModified;
+        private string _partyName;
         private GarageSaleEvent _model;
         private readonly INavigationService _navigationService;
         private readonly GarageSaleEventManager _garageSaleEventManager;
@@ -20,6 +22,24 @@ namespace GarageSaleApp.UwpApp.ViewModels
             _navigationService = navigationService;
             _garageSaleEventManager = garageSaleEventManager;
             SaveAsyncCommand = new RelayCommand(SaveAsync);
+            AddPartyCommand = new RelayCommand(AddParty);
+            Parties = new ObservableCollection<GarageSaleEventPartyViewModel>
+            {
+                new GarageSaleEventPartyViewModel(new GarageSaleEventParty
+                {
+                    Party = new Party
+                    {
+                        Name = "Rakowski Family",
+                    }
+                }),
+                new GarageSaleEventPartyViewModel(new GarageSaleEventParty
+                {
+                    Party = new Party
+                    {
+                        Name = "Harry Henderson",
+                    },
+                }),
+            };
         }
 
         public GarageSaleEvent Model
@@ -84,14 +104,31 @@ namespace GarageSaleApp.UwpApp.ViewModels
             }
         }
 
-        public void Load(object model)
+        public string PartyName
         {
-            Model = model as GarageSaleEvent ?? new GarageSaleEvent();
-            Model.StartDate = Model.StartDate ?? DateTime.UtcNow;
-            Model.EndDate = Model.EndDate ?? DateTime.UtcNow;
+            get => _partyName;
+            set => Set(ref _partyName, value);
         }
 
+        public ObservableCollection<GarageSaleEventPartyViewModel> Parties { get; set; }
+
+        public ICommand AddPartyCommand { get; }
+
         public ICommand SaveAsyncCommand { get; }
+
+        public void AddParty()
+        {
+            var party = new GarageSaleEventParty
+            {
+                Event = this.Model,
+                Party = new Party
+                {
+                    Name = this.PartyName
+                }
+            };
+
+            Parties.Add(new GarageSaleEventPartyViewModel(party));
+        }
 
         public void SaveAsync()
         {
@@ -102,6 +139,13 @@ namespace GarageSaleApp.UwpApp.ViewModels
             _garageSaleEventManager.CreateEvent(Model);
 
             _navigationService.NavigateTo(nameof(Views.DashboardView));
+        }
+
+        public void Load(object model)
+        {
+            Model = model as GarageSaleEvent ?? new GarageSaleEvent();
+            Model.StartDate = Model.StartDate ?? DateTime.UtcNow;
+            Model.EndDate = Model.EndDate ?? DateTime.UtcNow;
         }
     }
 }

@@ -6,16 +6,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding GarageSaleEvent, Source={StaticResource ViewModelLocator}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-    <StackPanel HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>Garage Sale Event</TextBlock>
-        <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding SaveAsyncCommand}"  IsEnabled="{Binding IsModified}">Save</Button>
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock>Garage Sale Event</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding SaveAsyncCommand}"  IsEnabled="{Binding IsModified}">Save</Button>
+            </StackPanel>
+            <TextBox Header="Name" Width="300" Text="{Binding Name, Mode=TwoWay}" />
+            <CalendarDatePicker Date="{Binding FirstDay, Mode=TwoWay}" Header="First day"></CalendarDatePicker>
+            <CalendarDatePicker Date="{Binding LastDay, Mode=TwoWay}" Header="Last day"></CalendarDatePicker>
+            <TextBox Text="{Binding Notes, Mode=TwoWay}" TextWrapping="Wrap" Header="Notes"></TextBox>
         </StackPanel>
-        <TextBox Header="Name" Width="300" Text="{Binding Name, Mode=TwoWay}" />
-        <CalendarDatePicker Date="{Binding FirstDay, Mode=TwoWay}" Header="First day"></CalendarDatePicker>
-        <CalendarDatePicker Date="{Binding LastDay, Mode=TwoWay}" Header="Last day"></CalendarDatePicker>
-        <TextBox Text="{Binding Notes, Mode=TwoWay}" TextWrapping="Wrap" Header="Notes"></TextBox>
-    </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Header="Party Name" Text="{Binding PartyName, Mode=TwoWay}" />
+            <Button Command="{Binding AddPartyCommand}">Add</Button>
+            <ListView ItemsSource="{Binding Parties}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <ComboBox Header="Color"></ComboBox>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
 </Page>
