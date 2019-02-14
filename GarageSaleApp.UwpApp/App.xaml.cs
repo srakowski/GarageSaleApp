@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GarageSaleApp.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -7,6 +9,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace GarageSaleApp.UwpApp
 {
+    public class GrabsResources : IDisposable
+    {
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -20,6 +31,11 @@ namespace GarageSaleApp.UwpApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (var db = new GarageSaleAppDbContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>

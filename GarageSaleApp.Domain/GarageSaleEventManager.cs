@@ -14,21 +14,8 @@ namespace GarageSaleApp.Domain
 
         public GarageSaleEvent CreateEvent(GarageSaleEvent garageSaleEvent)
         {
-            var name = garageSaleEvent.Name;
-
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("name must not be empty");
-            }
-
-            var @event = new GarageSaleEvent
-            {
-                Name = name
-            };
-
-            _eventRepository.Add(@event);
-    
-            return @event;
+            _eventRepository.Add(garageSaleEvent);    
+            return garageSaleEvent;
         }
 
         public IEnumerable<GarageSaleEvent> GetEvents()

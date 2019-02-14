@@ -13,7 +13,7 @@ namespace GarageSaleApp.UwpApp.ViewModels
         {
             SimpleIoc.Default.Register<Frame>(() => Window.Current.Content as Frame);
             SimpleIoc.Default.Register<INavigationService, FrameNavigationService>();
-            SimpleIoc.Default.Register<IGarageSaleEventRepository, DataAccess.FileGarageSaleEventRepository>();
+            SimpleIoc.Default.Register<IGarageSaleEventRepository, DataAccess.EFCoreGarageSaleEventRepository>();
             SimpleIoc.Default.Register<GarageSaleEventManager>();
 
             SimpleIoc.Default.Register<DashboardViewModel>();

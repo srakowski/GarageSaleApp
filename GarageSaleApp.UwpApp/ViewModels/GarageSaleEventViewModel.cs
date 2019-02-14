@@ -132,8 +132,6 @@ namespace GarageSaleApp.UwpApp.ViewModels
 
         public void SaveAsync()
         {
-            //await Task.Delay(TimeSpan.FromSeconds(30));
-
             IsModified = false;
 
             _garageSaleEventManager.CreateEvent(Model);

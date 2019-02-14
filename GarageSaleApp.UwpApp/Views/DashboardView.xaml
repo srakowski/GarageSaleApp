@@ -11,5 +11,12 @@
 
     <Grid>
         <Button Command="{Binding NewGarageSaleCommand}">New Garage Sale</Button>
+        <ListView ItemsSource="{Binding GarageSaleEvents}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
