@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GarageSaleApp.Domain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;

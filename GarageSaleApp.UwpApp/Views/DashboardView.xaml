@@ -9,7 +9,8 @@
     DataContext="{Binding Dashboard, Source={StaticResource ViewModelLocator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <StackPanel>
+        <!--<Button Command="{Binding NewGarageSaleCommand}">New Garage Sale</Button>-->
         <Button Command="{Binding NewGarageSaleCommand}">New Garage Sale</Button>
         <ListView ItemsSource="{Binding GarageSaleEvents}">
             <ListView.ItemTemplate>
@@ -18,5 +19,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+    </StackPanel>
 </Page>

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace GarageSaleApp.UwpApp.ViewModels
 {
-    public class GarageSaleEventViewModel : ViewModelBase
+    public class GarageSaleEventViewModel : ViewModelBase, IActivateable
     {
         private bool _isModified;
         private string _partyName;
@@ -139,9 +139,9 @@ namespace GarageSaleApp.UwpApp.ViewModels
             _navigationService.NavigateTo(nameof(Views.DashboardView));
         }
 
-        public void Load(object model)
+        public void Activate(object parameter)
         {
-            Model = model as GarageSaleEvent ?? new GarageSaleEvent();
+            Model = parameter as GarageSaleEvent ?? new GarageSaleEvent();
             Model.StartDate = Model.StartDate ?? DateTime.UtcNow;
             Model.EndDate = Model.EndDate ?? DateTime.UtcNow;
         }
